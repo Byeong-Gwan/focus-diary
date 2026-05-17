@@ -13,8 +13,8 @@ import { useState } from "react";
 export default function Home() {
   // 할일 목록 담는 변수
   const [todos, setTodos] = useState([
-    { id: 1, text: "React 기초 완성" },
-    { id: 2, text: "이직 지원·전략" },
+    { id: 1, text: "React 기초 완성", done: false },
+    { id: 2, text: "이직 지원·전략", done: false },
   ]);
 
   // 입력 영역 초기 값 빈값으로 셋팅
@@ -43,6 +43,14 @@ export default function Home() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
+            <input
+              type="checkbox"
+              checked={todo.done}
+              onChange={() =>
+                setTodos(todos.map((t) => 
+                  t.id === todo.id ? { ...t, done: !t.done } : t
+                ))
+              } />
             {todo.text}
             {/* filter로 해당 id만 제외한 새 배열을 만들어 상태 업데이트 */}
             {/* todos를 직접 수정하지 않는 이유: React는 불변성을 유지해야 리렌더링이 감지됨 */}
