@@ -10,14 +10,11 @@
  */
 
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   // 할일 목록 담는 변수
-  const [todos, setTodos] = useState([
-    { id: 1, text: "React 기초 완성", done: false },
-    { id: 2, text: "이직 지원·전략", done: false },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   // 입력 영역 초기 값 빈값으로 셋팅
   const [input, setInput] = useState("");
@@ -32,6 +29,20 @@ export default function Home() {
     setTodos([...todos, { id: Date.now(), text: input, done: false }]);
     setInput("");
   }
+
+  // localStorage에서 불러오기 (마운트 시 1회 실행)
+  useEffect(() => {
+    const saved = localStorage.getItem("todos");
+
+    if (saved) {
+      setTodos(JSON.parse(saved));
+    }
+  }, []);
+
+  // todos 변경될 때마다 localStorage에 저장
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <main className="min-h-screen bg-gray-50 p-8">
