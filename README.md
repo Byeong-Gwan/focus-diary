@@ -34,15 +34,24 @@ npm run dev
 
 브라우저에서 http://localhost:3000 접속
 
+## 구현 완료
+
+- 기본 CRUD (추가, 삭제)
+- 완료 체크 (취소선 표시)
+- 필터링 (전체 / 진행중 / 완료)
+- localStorage 연동
+- TypeScript 타입 정의
+- 컴포넌트 분리 (TodoInput, TodoItem, TodoFilter)
+
 ## 구현 예정
 
-- [ ] TypeScript 타입 정의 강화
-- [ ] 컴포넌트 분리
 - [ ] Weekly 페이지
 - [ ] Monthly 페이지
+- [ ] Daily 페이지
 
 ## 버전 히스토리
 
 - v0.1.0 | 기본 CRUD 구현 (2026-05-13)
 - v0.2.0 | 완료 체크 + Tailwind 디자인 (2026-05-18)
 - v0.3.0 | localStorage 연동 + 필터 기능 (2026-05-20)
+- v0.4.0 | TypeScript 타입 적용 + 컴포넌트 분리 (2026-05-20)
