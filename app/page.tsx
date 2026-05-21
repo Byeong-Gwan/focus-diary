@@ -13,19 +13,29 @@
 
 "use client"
 import { useState, useEffect } from "react";
+import TodoItem from "@/components/focus-board/TodoItem";
+import TodoInput from "@/components/focus-board/TodoInput";
+import TodoFilter from "@/components/focus-board/TodoFilter";
+
+// Todo 아이템 타입 정의
+type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+};
 
 // 필터 타입 정의
 type FilterType = "전체" | "진행중" | "완료";
 
 export default function Home() {
   // 할일 목록 담는 변수
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   // 입력 영역 초기 값 빈값으로 셋팅
   const [input, setInput] = useState("");
 
   // 현재 선택된 필터 상태
-  const [filter, setFilter] = useState<FilterType>("전체");
+  const [filter, setFilter] = useState<"전체" | "진행중" | "완료">("전체");
 
   // 입력받은 내용 추가 및 초기화 영역 
   const handleAdd = () => {
@@ -75,71 +85,33 @@ export default function Home() {
         </h1>
 
         {/* 입력 영역 */}
-        <div className="flex gap-2 mb-6">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-            placeholder="할 일을 입력하세요"
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          <button
-            onClick={handleAdd}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-          >
-            추가
-          </button>
-        </div>
+       <TodoInput
+          input={input}
+          onChange={setInput}
+          onAdd={handleAdd}
+       />
 
         {/* 필터 버튼 */}
-        <div className="flex gap-2 mb-4">
-          {(["전체", "진행중", "완료"] as FilterType[]).map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                filter === f
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-gray-500 border border-gray-300 hover:border-blue-400"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
+       <TodoFilter
+          filter={filter}
+          onFilterChange={setFilter}
+       />
 
         {/* 할일 목록 */}
         <ul className="space-y-2">
           {filteredTodos.map((todo) => (
-            <li
+            <TodoItem
               key={todo.id}
-              className="flex items-center gap-3 bg-white px-4 py-3 rounded-lg shadow-sm"
-            >
-              {/* 완료 체크박스 */}
-              <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() =>
-                  setTodos(todos.map((t) =>
-                    t.id === todo.id ? { ...t, done: !t.done } : t
-                  ))
-                }
-                className="w-4 h-4 accent-blue-500 cursor-pointer"
-              />
-
-              {/* 텍스트 - 완료시 취소선 */}
-              <span className={`flex-1 text-gray-700 ${todo.done ? "line-through text-gray-400" : ""}`}>
-                {todo.text}
-              </span>
-
-              {/* 삭제 버튼 */}
-              <button
-                onClick={() => setTodos(todos.filter((t) => t.id !== todo.id))}
-                className="text-gray-400 hover:text-red-500 transition-colors text-sm"
-              >
-                삭제
-              </button>
-            </li>
+              todo={todo}
+              onToggle={(id) =>
+                setTodos(todos.map((t) =>
+                  t.id === id ? { ...t, done: !t.done } : t
+                ))
+              }
+              onDelete={(id) =>
+                setTodos(todos.filter((t) => t.id !== id))
+              }
+            />
           ))}
         </ul>
 
