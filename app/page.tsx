@@ -16,13 +16,7 @@ import { useState, useEffect } from "react";
 import TodoItem from "@/components/focus-board/TodoItem";
 import TodoInput from "@/components/focus-board/TodoInput";
 import TodoFilter from "@/components/focus-board/TodoFilter";
-
-// Todo 아이템 타입 정의
-type Todo = {
-  id: number;
-  text: string;
-  done: boolean;
-};
+import { Todo } from "@/types/common";
 
 // 필터 타입 정의
 type FilterType = "전체" | "진행중" | "완료";
