@@ -1,3 +1,14 @@
+/**
+ * @description Monthly 페이지
+ * - 이번 달 날짜 자동 계산 (1일 ~ 말일)
+ * - 달력 그리드 UI (7열)
+ * - 날짜별 할일 추가 / 완료 체크 기능
+ * - localStorage 연동으로 데이터 영속성 유지
+ *
+ * @history
+ * 2026-06-01 | 최초 작성 | 달력 그리드, 날짜별 할일 CRUD, localStorage 연동
+ */
+
 "use client"
 import { useState, useEffect } from "react";
 import { WeeklyData } from "@/types/common";
