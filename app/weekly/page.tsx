@@ -11,6 +11,8 @@
 "use client"
 import { useState, useEffect } from "react";
 import { WeeklyData } from "@/types/common"; 
+import { formatDate, dateToKey } from "@/lib/utils";
+
 
 // 이번 주 날짜 7일 배열 반환
 function getWeekDates(): Date[] {
@@ -27,21 +29,6 @@ function getWeekDates(): Date[] {
         date.setDate(monday.getDate() + i);
         return date;
     });
-}
-
-// 날짜 형식 포멧
-function formatDate(date: Date): string {
-    const month = date.getMonth() + 1; // 월 (0부터 시작이라 + 1)
-    const day = date.getDate();
-    const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
-    const dayName = dayNames[date.getDay()]; // 요일
-
-    return `${month}월 ${day}일 (${dayName})`;
-}
-
-// Date를 key값 문자열로 변환 "2026-05-26"
-function dateToKey(date:Date): string {
-    return date.toISOString().split("T")[0];
 }
 
 export default function WeeklyPage() {

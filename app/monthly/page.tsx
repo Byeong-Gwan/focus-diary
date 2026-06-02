@@ -12,6 +12,8 @@
 "use client"
 import { useState, useEffect } from "react";
 import { WeeklyData } from "@/types/common";
+import { dateToKey } from "@/lib/utils";
+
 
 
 function getMonthDates(): Date[] {
@@ -22,11 +24,6 @@ function getMonthDates(): Date[] {
     return Array.from({ length: lastDay }, (_, i) => {
         return new Date(today.getFullYear(), today.getMonth(), i + 1);
     });
-}
-
-// Date를 key값 문자열로 변환 "2026-05-26"
-function dateToKey(date:Date): string {
-    return date.toISOString().split("T")[0];
 }
 
 export default function MonthlyPage() {
