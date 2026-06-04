@@ -10,7 +10,7 @@
 
 "use client"
 import { useState, useEffect } from "react";
-import { WeeklyData } from "@/types/common"; 
+import { WeeklyData } from "@/types/weekly";
 import { formatDate, dateToKey } from "@/lib/utils";
 
 
