@@ -51,6 +51,8 @@ npm run dev
 - Weekly 페이지 (이번 주 날짜별 할일 CRUD, localStorage 연동)
 - Monthly 페이지 (달력 그리드, 날짜별 할일 CRUD, localStorage 연동)
 - Daily 페이지 (우선순위 설정, 목표/실제 시간 추적, 달성률 계산, 한줄평/감사한 일)
+- 공통 유틸 함수 분리 (lib/utils.ts)
+- Daily 페이지 날짜 이동 기능 (이전/다음 날)
 
 ## 구현 예정
 
@@ -65,3 +67,4 @@ npm run dev
 - v0.5.0 | Weekly 페이지 구현 (2026-05-26)
 - v0.6.0 | 상단 네비게이션 + Monthly 페이지 구현 (2026-06-01)
 - v0.7.0 | Daily 페이지 구현 (2026-06-02)
+- v0.7.1 | 공통 유틸 분리 + Daily 날짜 이동 기능 (2026-06-02)
