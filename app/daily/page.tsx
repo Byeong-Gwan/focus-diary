@@ -36,17 +36,6 @@ function getCelebrationMessage(rate: number): string | null {
 
     return `🎊 ${over}% 초과 달성! 대단해요!`;
 }
-
-// 오늘 날짜 포맷
-function getTodayLabel(): string {
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayName = dayNames[today.getDay()];
-  
-  return `${month}월 ${day}일 (${dayName})`;
-}
-
 const defaultData: DailyData = {
   todos: [],
   comment: "",
