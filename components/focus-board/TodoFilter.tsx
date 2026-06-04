@@ -1,4 +1,4 @@
-type FilterType = "전체ㅔ" | "진행중" | "완료";
+type FilterType = "전체" | "진행중" | "완료";
 
 type Props = {
     filter: FilterType;
